@@ -36,10 +36,15 @@ namespace Scrappy
     }
     void SFMLWindow::OnUpdate()
     {
-        m_Window.handleEvents([this](const auto& e) {MapEvents(e);});
         m_Window.clear();
+        m_Window.handleEvents([this](const auto& e) {MapEvents(e);});
+    }
+
+    void SFMLWindow::Display()
+    {
         m_Window.display();
     }
+
 
     //SFML Events https://www.sfml-dev.org/documentation/3.0.2/classsf_1_1Event.html
     void SFMLWindow::MapEvents(const sf::Event &e)

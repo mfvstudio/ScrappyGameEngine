@@ -24,6 +24,8 @@ namespace Scrappy
         SFMLWindow(const WindowProps& props);
         virtual ~SFMLWindow();
         void OnUpdate() override;
+        void Display() override;
+        void* GetRenderer() override { return &m_Window; }
         inline unsigned int GetWidth() const override { return m_Data.Width; }
         inline unsigned int GetHeight() const override { return m_Data.Height; }
 

@@ -23,12 +23,17 @@ add_library(Scrappy STATIC
         src/Scrappy/Window.h
         src/Scrappy/SFMLWindow.cpp
         src/Scrappy/SFMLWindow.h
-        src/Scrappy.h
         src/Scrappy/Layer.cpp
         src/Scrappy/Layer.h
         src/Scrappy/LayerStack.cpp
         src/Scrappy/LayerStack.h
+        src/Scrappy/layers/ImGuiLayer.cpp
+        src/Scrappy/layers/ImGuiLayer.h
+        src/Scrappy/layers/ImGuiLayer.h
+        src/Scrappy/Clock.cpp
+        src/Scrappy/Clock.h
 )
-target_link_libraries(Scrappy PRIVATE SFML::Graphics SFML::Window SFML::System SFML::Audio
-    PUBLIC spdlog)
+target_link_libraries(Scrappy PUBLIC SFML::Graphics SFML::Window SFML::System SFML::Audio
+    PUBLIC spdlog
+    PRIVATE ImGui-SFML::ImGui-SFML)
 target_include_directories(Scrappy PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")

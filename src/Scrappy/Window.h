@@ -25,6 +25,8 @@ namespace Scrappy
         using EventCallbackFn = std::function<void(Event&)>;
         virtual ~Window() = default;
         virtual void OnUpdate() = 0;
+        virtual void Display() = 0;
+        virtual void* GetRenderer() = 0;
         virtual unsigned int GetWidth() const = 0;
         virtual unsigned int GetHeight() const = 0;
 
