@@ -23,6 +23,11 @@ add_library(Scrappy STATIC
         src/Scrappy/Window.h
         src/Scrappy/SFMLWindow.cpp
         src/Scrappy/SFMLWindow.h
+        src/Scrappy.h
+        src/Scrappy/Layer.cpp
+        src/Scrappy/Layer.h
+        src/Scrappy/LayerStack.cpp
+        src/Scrappy/LayerStack.h
 )
 target_link_libraries(Scrappy PRIVATE SFML::Graphics SFML::Window SFML::System SFML::Audio
     PUBLIC spdlog)

@@ -22,6 +22,9 @@ namespace Scrappy
     void Application::Run()
     {
         while (m_IsRunning) {
+            for (Layer* layer : m_LayerStack) {
+                layer->OnUpdate();
+            }
             m_Window->OnUpdate();
         }
     }
@@ -30,6 +33,10 @@ namespace Scrappy
     {
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+        for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
+            (*--it)->OnEvent(e);
+            if (e.Handled) break;
+        }
     }
     bool Application::OnWindowClose(WindowCloseEvent& e)
     {
@@ -37,5 +44,13 @@ namespace Scrappy
         return true;
     }
 
+    void Application::Pushlayer(Layer* layer)
+    {
+        m_LayerStack.PushLayer(layer);
+    }
 
+    void Application::PushOverlay(Layer* layer)
+    {
+        m_LayerStack.PushOverlay(layer);
+    }
 }

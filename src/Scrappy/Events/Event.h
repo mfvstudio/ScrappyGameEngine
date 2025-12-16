@@ -37,8 +37,8 @@ virtual const char* GetName() const override { return #type; }
 
     class Event
     {
-        friend class EventDispatcher;
     public:
+            bool Handled = false;
             virtual EventType GetEventType() const = 0;
             virtual const char* GetName() const = 0;
             virtual int GetCategoryFlags() const = 0;
@@ -48,8 +48,6 @@ virtual const char* GetName() const override { return #type; }
             {
                 return GetCategoryFlags() & category;
             }
-    protected:
-        bool m_Handled = false;
     };
     class EventDispatcher
     {
@@ -61,7 +59,7 @@ virtual const char* GetName() const override { return #type; }
         bool Dispatch(EventFn<T> func)
         {
             if (m_Event.GetEventType() == T::GetStaticType()) {
-                m_Event.m_Handled = func(*static_cast<T *>(&m_Event));
+                m_Event.Handled = func(*static_cast<T *>(&m_Event));
                 return true;
             }
             return false;
