@@ -33,6 +33,20 @@ namespace Scrappy
         int m_RepeatCount;
     };
 
+    class KeyTypedEvent : public KeyEvent
+    {
+    public:
+        KeyTypedEvent(const int kc) : KeyEvent(kc) {}
+        std::string ToString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyTypedEvent: " << m_KeyCode;
+            return ss.str();
+        }
+        EVENT_CLASS_TYPE(KeyTyped);
+        EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
+    };
+
     class KeyReleasedEvent : public KeyEvent
     {
     public:

@@ -5,6 +5,7 @@
 #include "../Layer.h"
 
 #include "../Application.h"
+#include "../Events/KeyEvent.h"
 #include "../Events/MouseEvent.h"
 
 namespace Scrappy
@@ -21,6 +22,17 @@ namespace Scrappy
         void OnUpdate() override;
         void OnEvent(Event &e) override;
     private:
-        bool OnMouseMove(MouseMovedEvent& e);
+        bool OnMouseMoveEvent(MouseMovedEvent& e);
+        bool OnMouseWheelEvent(MouseScrolledEvent& e);
+        bool OnMousePressedEvent(MouseButtonPressedEvent& event);
+        bool OnMouseReleasedEvent(MouseButtonReleasedEvent& event);
+        bool OnKeyPressedEvent(KeyPressedEvent& event);
+        bool OnKeyReleasedEvent(KeyReleasedEvent& event);
+        bool OnKeyTypedEvent(KeyTypedEvent& event);
+        bool OnWindowCloseEvent(WindowCloseEvent& e);
+        bool OnWindowResizeEvent(WindowResizeEvent& e);
+        bool OnWindowFocusEvent(WindowFocusEvent& e);
+        bool OnWindowLostFocusEvent(WindowLostFocusEvent& e);
+
     };
 }

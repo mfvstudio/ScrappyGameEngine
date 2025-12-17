@@ -21,7 +21,6 @@ namespace Scrappy
     }
     SFMLWindow::~SFMLWindow()
     {
-        Shutdown();
     }
     void SFMLWindow::Init(const WindowProps& props)
     {
@@ -30,7 +29,7 @@ namespace Scrappy
         m_Data.Height = props.Height;
         m_Window = sf::RenderWindow(sf::VideoMode({m_Data.Width, m_Data.Height}), m_Data.Title);
     }
-    void SFMLWindow::Shutdown()
+    void SFMLWindow::ShutDown()
     {
         m_Window.close();
     }
@@ -73,6 +72,10 @@ namespace Scrappy
         else if (const auto* keyReleased = e.getIf<sf::Event::KeyReleased>()) {
             KeyReleasedEvent windowKeyReleasedEvent(static_cast<int>(keyReleased->code));
             m_Data.EventCallback(windowKeyReleasedEvent);
+        }
+        else if (const auto* textEntered = e.getIf<sf::Event::TextEntered>()) {
+            KeyTypedEvent windowKeyTypedEvent(textEntered->unicode);
+            m_Data.EventCallback(windowKeyTypedEvent);
         }
         else if (const auto* mouseMoved = e.getIf<sf::Event::MouseMoved>()) {
             MouseMovedEvent windowMouseMovedEvent(mouseMoved->position.x, mouseMoved->position.y);

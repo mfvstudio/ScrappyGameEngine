@@ -32,6 +32,10 @@ add_library(Scrappy STATIC
         src/Scrappy/layers/ImGuiLayer.h
         src/Scrappy/Clock.cpp
         src/Scrappy/Clock.h
+        src/Scrappy/Input.h
+        src/Scrappy/SFMLInput.cpp
+        src/Scrappy/SFMLInput.cpp
+        src/Scrappy/SFMLInput.h
 )
 target_link_libraries(Scrappy PUBLIC SFML::Graphics SFML::Window SFML::System SFML::Audio
     PUBLIC spdlog

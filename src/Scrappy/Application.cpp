@@ -4,8 +4,7 @@
 
 #include "Application.h"
 
-#include <SFML/Graphics/RenderWindow.hpp>
-
+#include "Input.h"
 #include "Logger.h"
 #include "Events/ApplicationEvent.h"
 
@@ -29,7 +28,12 @@ namespace Scrappy
             for (Layer* layer : m_LayerStack) {
                 layer->OnUpdate();
             }
-            m_Window->Display();
+            //The window can be Closed before this call, leading to an assertion failure.
+            if (m_IsRunning) {
+                m_Window->Display();
+            } else {
+                m_Window->ShutDown();
+            }
         }
     }
 
@@ -45,7 +49,7 @@ namespace Scrappy
     bool Application::OnWindowClose(WindowCloseEvent& e)
     {
         m_IsRunning = false;
-        return true;
+        return false;
     }
 
     void Application::Pushlayer(Layer* layer)

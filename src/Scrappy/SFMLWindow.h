@@ -26,13 +26,13 @@ namespace Scrappy
         void OnUpdate() override;
         void Display() override;
         void* GetRenderer() override { return &m_Window; }
+        void ShutDown() override;
         inline unsigned int GetWidth() const override { return m_Data.Width; }
         inline unsigned int GetHeight() const override { return m_Data.Height; }
 
         inline void SetEventCallback(const EventCallbackFn& cb) override {m_Data.EventCallback = cb;};
     private:
         virtual void Init(const WindowProps& props);
-        virtual void Shutdown();
         //Maps SFML Events to our custom events
         virtual void MapEvents(const sf::Event& e);
     };

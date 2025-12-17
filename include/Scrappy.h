@@ -6,4 +6,6 @@
 
 #include "../src/Scrappy/Application.h"
 #include "../src/Scrappy/Logger.h"
+#include "../src/Scrappy/Input.h"
+
 #include "../src/Scrappy/EntryPoint.h"
